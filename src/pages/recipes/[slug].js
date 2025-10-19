@@ -12,17 +12,17 @@ export default function Recipe() {
 
       { DocumentHead() }
       
-      <main class="recipe-entry">
+      <main className="recipe-entry">
         <header>
-          <div class="layout-section">
+          <div className="layout-section">
             <h1>Peanut Sesame Noodles</h1>
-            <img src="/assets/img/recipe-placeholder.jpg" alt="placeholder image" width="1440" height="960" />
+            <Image src="/assets/img/recipe-placeholder.jpg" alt="placeholder image" width="1440" height="960" />
           </div>
         </header>
 
-        <div class="body">
+        <div className="body">
           <div class="layout-section">
-            <section class="ingredient-list">
+            <section className="ingredient-list">
               <h2>Ingredients</h2>
               <ul>
                 <li>Lorem</li>
@@ -32,7 +32,7 @@ export default function Recipe() {
                 <li>Amet</li>
               </ul>
             </section>
-            <section class="instructions">
+            <section className="instructions">
               <h2>Instructions</h2>
               <ol>
                 <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, nostrum quis. Quam eveniet nulla praesentium ipsum consequatur, aliquid temporibus vitae.</li>
