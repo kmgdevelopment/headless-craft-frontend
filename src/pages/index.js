@@ -58,8 +58,8 @@ export default function Home() {
           </div>
 
           <nav className="pager">
-            <span>1</span>
-            <Link href="#">2</Link>
+            <span>&laquo; Prev</span>
+            <Link href="#">Next &raquo;</Link>
           </nav>
         </section>
         
