@@ -1,8 +1,8 @@
 export default function DocumentFoot() {
     return (
-        <footer class="global">
-            <div class="layout-section">
-            <p class="copy">Copyright &copy; The Crafty Cook</p>
+        <footer className="global">
+            <div className="layout-section">
+            <p className="copy">Copyright &copy; The Crafty Cook</p>
             </div>
         </footer>
     )

@@ -46,7 +46,7 @@ export default function Home() {
         <section className="layout-section">
           <div className="listing">
             { items.map( (item) => (
-                <div className="item" key="item-{item}">
+                <div className="item" key={item}>
                   <a href="#" className="recipe-card">
                     <div className="media">
                       <Image src="/assets/img/recipe-placeholder.jpg" alt="placeholder image" width="500" height="250" />
