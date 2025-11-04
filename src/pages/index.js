@@ -4,8 +4,24 @@ import Image from "next/image";
 import DocumentHead from "@/components/DocumentHead";
 import DocumentFoot from "@/components/DocumentFoot";
 
+import { useQuery } from '@apollo/client/react';
+import GET_RECIPE_ENTRIES from "@/data/recipe-entries-query";
+
 export default function Home() {
   const items = [1,2,3,4];
+
+  const queryVariables = {
+    section: ['recipes']
+  }
+
+  const { error, data } = useQuery(GET_RECIPE_ENTRIES, { variables: queryVariables });
+
+  if (!data) return null;
+
+  if (error) {
+    console.error(error);
+    return <p>There was an error fetching the entries.</p>;
+  }
 
   return (
     <>
@@ -45,13 +61,13 @@ export default function Home() {
 
         <section className="layout-section">
           <div className="listing">
-            { items.map( (item) => (
-                <div className="item" key={item}>
-                  <a href="/recipes/test-recipe" className="recipe-card">
+            { data.entries.map( (entry) => (
+                <div className="item" key={entry.id}>
+                  <a href={entry.uri} className="recipe-card">
                     <div className="media">
-                      <Image src="/assets/img/recipe-placeholder.jpg" alt="placeholder image" width="500" height="250" />
+                      <Image src={entry.image[0].url} alt={entry.title} width="500" height="250" />
                     </div>
-                    <h6>Peanut Sesame Noodles</h6>
+                    <h6>{entry.title}</h6>
                   </a>
                 </div>
             )) }
