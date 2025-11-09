@@ -1,4 +1,4 @@
-export default function DocumentFoot() {
+export default function GlobalFooter() {
     return (
         <footer className="global">
             <div className="layout-section">

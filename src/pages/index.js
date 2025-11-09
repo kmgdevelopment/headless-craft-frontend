@@ -1,8 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import DocumentHead from "@/components/DocumentHead";
-import DocumentFoot from "@/components/DocumentFoot";
+import GlobalHeader from "@/components/GlobalHeader";
+import GlobalFooter from "@/components/GlobalFooter";
 
 export default function Home() {
   const items = [1,2,3,4];
@@ -13,7 +13,7 @@ export default function Home() {
         <title>The Crafty Cook</title>
       </Head>
 
-      { DocumentHead() }
+      { GlobalHeader() }
       
       <main>
         <section className="layout-section">
@@ -65,7 +65,7 @@ export default function Home() {
         
       </main>
 
-      { DocumentFoot() }
+      { GlobalFooter() }
     </>
   );
 }
