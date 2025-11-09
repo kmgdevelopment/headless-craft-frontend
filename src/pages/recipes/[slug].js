@@ -1,7 +1,7 @@
+import GlobalFooter from "@/components/GlobalFooter";
+import GlobalHeader from "@/components/GlobalHeader";
 import Head from "next/head";
 import Image from "next/image";
-import DocumentHead from "@/components/DocumentHead";
-import DocumentFoot from "@/components/DocumentFoot";
 
 export default function Recipe() {
   return (
@@ -10,7 +10,7 @@ export default function Recipe() {
         <title>Peanut Sesame Noodles | The Crafty Cook</title>
       </Head>
 
-      { DocumentHead() }
+      { GlobalHeader() }
       
       <main className="recipe-entry">
         <header>
@@ -44,7 +44,7 @@ export default function Recipe() {
         </div>
       </main>
 
-      { DocumentFoot() }
+      { GlobalFooter() }
     </>
   );
 }
