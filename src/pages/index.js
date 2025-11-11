@@ -8,8 +8,6 @@ import { useQuery } from '@apollo/client/react';
 import GET_RECIPE_ENTRIES from "@/data/recipe-entries-query";
 
 export default function Home() {
-  const items = [1,2,3,4];
-
   const queryVariables = {
     section: ['recipes']
   }
@@ -29,7 +27,7 @@ export default function Home() {
         <title>The Crafty Cook</title>
       </Head>
 
-      { GlobalHeader() }
+      <GlobalHeader />
       
       <main>
         <section className="layout-section">
@@ -63,12 +61,12 @@ export default function Home() {
           <div className="listing">
             { data.entries.map( (entry) => (
                 <div className="item" key={entry.id}>
-                  <a href={entry.uri} className="recipe-card">
+                  <Link href={entry.uri} className="recipe-card">
                     <div className="media">
                       <Image src={entry.image[0].url} alt={entry.title} width="500" height="250" />
                     </div>
                     <h6>{entry.title}</h6>
-                  </a>
+                  </Link>
                 </div>
             )) }
           </div>
@@ -81,7 +79,7 @@ export default function Home() {
         
       </main>
 
-      { GlobalFooter() }
+      <GlobalFooter />
     </>
   );
 }
