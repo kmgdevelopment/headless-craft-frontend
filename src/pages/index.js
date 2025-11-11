@@ -14,8 +14,10 @@ export default function Home() {
 
   const { error, data } = useQuery(GET_RECIPE_ENTRIES, { variables: queryVariables });
 
+  // prevent an error if the component mounts before the data has loaded
   if (!data) return null;
 
+  // if there was a GraphQL error log it and return a message to the user
   if (error) {
     console.error(error);
     return <p>There was an error fetching the entries.</p>;
