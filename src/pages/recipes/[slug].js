@@ -10,7 +10,7 @@ export default function Recipe() {
         <title>Peanut Sesame Noodles | The Crafty Cook</title>
       </Head>
 
-      { GlobalHeader() }
+      <GlobalHeader />
       
       <main className="recipe-entry">
         <header>
@@ -21,7 +21,7 @@ export default function Recipe() {
         </header>
 
         <div className="body">
-          <div class="layout-section">
+          <div className="layout-section">
             <section className="ingredient-list">
               <h2>Ingredients</h2>
               <ul>
@@ -44,7 +44,7 @@ export default function Recipe() {
         </div>
       </main>
 
-      { GlobalFooter() }
+      <GlobalFooter />
     </>
   );
 }
