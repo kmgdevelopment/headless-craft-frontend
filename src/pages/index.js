@@ -8,16 +8,16 @@ import { useQuery } from '@apollo/client/react';
 import GET_RECIPE_ENTRIES from "@/data/recipe-entries-query";
 
 export default function Home() {
-  const items = [1,2,3,4];
-
   const queryVariables = {
     section: ['recipes']
   }
 
   const { error, data } = useQuery(GET_RECIPE_ENTRIES, { variables: queryVariables });
 
+   // prevent an error if the component mounts before the data has loaded
   if (!data) return null;
 
+  // if there was a GraphQL error log it and return a message to the user
   if (error) {
     console.error(error);
     return <p>There was an error fetching the entries.</p>;
