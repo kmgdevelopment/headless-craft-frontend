@@ -13,7 +13,7 @@ export default function Home() {
         <title>The Crafty Cook</title>
       </Head>
 
-      { GlobalHeader() }
+      <GlobalHeader />
       
       <main>
         <section className="layout-section">
@@ -47,12 +47,12 @@ export default function Home() {
           <div className="listing">
             { items.map( (item) => (
                 <div className="item" key={item}>
-                  <a href="/recipes/test-recipe" className="recipe-card">
+                  <Link href="/recipes/test-recipe" className="recipe-card">
                     <div className="media">
                       <Image src="/assets/img/recipe-placeholder.jpg" alt="placeholder image" width="500" height="250" />
                     </div>
                     <h6>Peanut Sesame Noodles</h6>
-                  </a>
+                  </Link>
                 </div>
             )) }
           </div>
@@ -65,7 +65,7 @@ export default function Home() {
         
       </main>
 
-      { GlobalFooter() }
+      <GlobalFooter />
     </>
   );
 }
