@@ -20,14 +20,14 @@ export default function Recipe() {
 
   const { error, data } = useQuery(GET_SINGLE_RECIPE, { variables: queryVariables });
 
-  // prevent an error if the component mounts before the data has loaded
-  if (!data) return null;
-
   // if there was a GraphQL error log it and return a message to the user
   if(error) {
     console.error(error);
     return <p>There was an error fetching the entry.</p>;
   }
+
+  // prevent an error if the component mounts before the data has loaded
+  if (!data) return null;
 
   // make it so we don't need to type data.entry for every variable
   const entry = data.entry;
