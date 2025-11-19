@@ -1,7 +1,7 @@
 import Head from "next/head";
 import GlobalHeader from "@/components/GlobalHeader";
 import GlobalFooter from "@/components/GlobalFooter";
-import EntryListing from "@/components/EntryListing";
+import RecipeListing from "@/components/RecipeListing";
 import SearchFilter from "@/components/SearchFilter";
 import CategoryFilter from "@/components/CategoryFilter";
 
@@ -46,7 +46,7 @@ export default function Home() {
         </section>
 
         <section className="layout-section">
-          <EntryListing 
+          <RecipeListing 
             data={data} 
             error={error} 
           />

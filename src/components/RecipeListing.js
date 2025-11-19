@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function EntryListing({data, error}) {
+export default function RecipeListing({data, error}) {
     // if there was a GraphQL error log it and return a message to the user
     if (error) {
         console.error(error);
