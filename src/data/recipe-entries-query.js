@@ -5,11 +5,15 @@ const GET_RECIPE_ENTRIES = gql`
         $section: [String]
         $limit: Int
         $offset: Int
+        $search: String
+        $orderBy: String
     ) {
         entries(
             section: $section
             limit: $limit
             offset: $offset
+            search: $search
+            orderBy: $orderBy
         ) {
             id
             title
@@ -22,6 +26,8 @@ const GET_RECIPE_ENTRIES = gql`
         }
         entryCount(
             section: $section
+            search: $search
+            orderBy: $orderBy
         )
     }
 `;

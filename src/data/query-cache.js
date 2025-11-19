@@ -1,11 +1,16 @@
 import { InMemoryCache } from "@apollo/client";
 import { offsetLimitPagination } from "@apollo/client/utilities";
 
+const listingKeyArgs = ['section', 'search'];
+
 const queryCache = new InMemoryCache({
     typePolicies: {
         Query: {
             fields: {
-                entries: offsetLimitPagination()
+                entries: offsetLimitPagination(listingKeyArgs),
+                entryCount: {
+                    keyArgs: listingKeyArgs
+                }
             },
         },
     },
