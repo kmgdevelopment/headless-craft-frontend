@@ -17,10 +17,7 @@ export default function Home() {
     offset: queryOffset.current
   }
 
-  const { error, data, fetchMore } = useQuery(GET_RECIPE_ENTRIES, { variables: queryVariables });
-
-  // prevent an error if the component mounts before the data has loaded
-  if (!data) return null;
+  const { error, data } = useQuery(GET_RECIPE_ENTRIES, { variables: queryVariables });
 
   // if there was a GraphQL error log it and return a message to the user
   if (error) {
@@ -28,13 +25,8 @@ export default function Home() {
     return <p>There was an error fetching the entries.</p>;
   }
 
-  const handleLoadMore = () => {
-    fetchMore({
-      variables: {
-        offset: queryOffset.current = data.entries.length
-      }
-    });
-  }
+  // prevent an error if the component mounts before the data has loaded
+  if (!data) return null;
 
   return (
     <>
