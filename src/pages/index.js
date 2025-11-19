@@ -6,7 +6,7 @@ import GlobalFooter from "@/components/GlobalFooter";
 
 import { useQuery } from '@apollo/client/react';
 import GET_RECIPE_ENTRIES from "@/data/recipe-entries-query";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 
 export default function Home() {
   const queryOffset = useRef(0);
