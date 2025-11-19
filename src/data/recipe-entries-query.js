@@ -3,9 +3,13 @@ import { gql } from "@apollo/client";
 const GET_RECIPE_ENTRIES = gql`
     query GetRecipeEntries(
         $section: [String]
+        $limit: Int
+        $offset: Int
     ) {
         entries(
             section: $section
+            limit: $limit
+            offset: $offset
         ) {
             id
             title
@@ -16,6 +20,9 @@ const GET_RECIPE_ENTRIES = gql`
                 }
             }
         }
+        entryCount(
+            section: $section
+        )
     }
 `;
 

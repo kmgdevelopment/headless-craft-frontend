@@ -6,13 +6,18 @@ import GlobalFooter from "@/components/GlobalFooter";
 
 import { useQuery } from '@apollo/client/react';
 import GET_RECIPE_ENTRIES from "@/data/recipe-entries-query";
+import { useRef, useEffect } from "react";
 
 export default function Home() {
+  const queryOffset = useRef(0);
+
   const queryVariables = {
-    section: ['recipes']
+    section: ['recipes'],
+    limit: 4,
+    offset: queryOffset.current
   }
 
-  const { error, data } = useQuery(GET_RECIPE_ENTRIES, { variables: queryVariables });
+  const { error, data, fetchMore } = useQuery(GET_RECIPE_ENTRIES, { variables: queryVariables });
 
   // prevent an error if the component mounts before the data has loaded
   if (!data) return null;
@@ -21,6 +26,14 @@ export default function Home() {
   if (error) {
     console.error(error);
     return <p>There was an error fetching the entries.</p>;
+  }
+
+  const handleLoadMore = () => {
+    fetchMore({
+      variables: {
+        offset: queryOffset.current = data.entries.length
+      }
+    });
   }
 
   return (
@@ -73,10 +86,11 @@ export default function Home() {
             )) }
           </div>
 
-          <nav className="pager">
-            <span>&laquo; Prev</span>
-            <Link href="#">Next &raquo;</Link>
-          </nav>
+          {data.entries.length < data.entryCount &&
+            <nav className="pager">
+              <button onClick={handleLoadMore}>Load More</button>
+            </nav>
+          }
         </section>
         
       </main>

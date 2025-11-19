@@ -124,6 +124,23 @@ header.global {
     > a {
         color: var(--color-primary);
     }
+    button {
+        background-color: #920002;
+        border: none;
+        border-radius: 1000px;
+        color: #ffffff;
+        padding: .5em 1.5em;
+        font-size: .75rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: .05em;
+        line-height: 1;
+        transition: all .3s ease;
+        &:hover {
+            cursor: pointer;
+            background-color: #690002;
+        }
+    }
 }
 
 .recipe-entry {
