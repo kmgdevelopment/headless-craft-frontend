@@ -1,8 +1,9 @@
 import Head from "next/head";
-import Link from "next/link";
-import Image from "next/image";
 import GlobalHeader from "@/components/GlobalHeader";
 import GlobalFooter from "@/components/GlobalFooter";
+import EntryListing from "@/components/EntryListing";
+import SearchFilter from "@/components/SearchFilter";
+import CategoryFilter from "@/components/CategoryFilter";
 
 import { useQuery } from '@apollo/client/react';
 import GET_RECIPE_ENTRIES from "@/data/recipe-entries-query";
@@ -18,15 +19,6 @@ export default function Home() {
   }
 
   const { error, data, fetchMore } = useQuery(GET_RECIPE_ENTRIES, { variables: queryVariables });
-
-  // prevent an error if the component mounts before the data has loaded
-  if (!data) return null;
-
-  // if there was a GraphQL error log it and return a message to the user
-  if (error) {
-    console.error(error);
-    return <p>There was an error fetching the entries.</p>;
-  }
 
   const handleLoadMore = () => {
     fetchMore({
@@ -47,46 +39,19 @@ export default function Home() {
       <main>
         <section className="layout-section">
           <div className="filters">
-            <div className="search-filter">
-              <input id="search" name="search" type="search" />
-            </div>
+            <SearchFilter />
 
-            <div className="category-filter">
-              <div className="fieldgroup">
-                <input type="checkbox" id="vegan" name="vegan" />
-                <label htmlFor="vegan">Vegan</label>
-              </div>
-              <div className="fieldgroup">
-                <input type="checkbox" id="gluten-free" name="gluten-free" />
-                <label htmlFor="gluten-free">Gluten Free</label>
-              </div>
-              <div className="fieldgroup">
-                <input type="checkbox" id="low-carb" name="low-carb" />
-                <label htmlFor="low-carb">Low Carb</label>
-              </div>
-              <div className="fieldgroup">
-                <input type="checkbox" id="low-sodium" name="low-sodium" />
-                <label htmlFor="low-sodium">Low Sodium</label>
-              </div>
-            </div>
+            <CategoryFilter />
           </div>
         </section>
 
         <section className="layout-section">
-          <div className="listing">
-            { data.entries.map( (entry) => (
-                <div className="item" key={entry.id}>
-                  <Link href={entry.uri} className="recipe-card">
-                    <div className="media">
-                      <Image src={entry.image[0].url} alt={entry.title} width="500" height="250" />
-                    </div>
-                    <h6>{entry.title}</h6>
-                  </Link>
-                </div>
-            )) }
-          </div>
+          <EntryListing 
+            data={data} 
+            error={error} 
+          />
 
-          {data.entries.length < data.entryCount &&
+          {data && data.entries.length < data.entryCount &&
             <nav className="pager">
               <button onClick={handleLoadMore}>Load More</button>
             </nav>
