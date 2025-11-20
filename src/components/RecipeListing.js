@@ -11,6 +11,11 @@ export default function RecipeListing({data, error}) {
     // prevent an error if the component mounts before the data has loaded
     if (!data) return null;
 
+    // display a message if filtering returns no results
+    if (!data.entries.length) {
+      return <p>There are no recipes that match your filters.</p>;
+    }
+
     return (
         <div className="listing">
             { data.entries.map( (entry) => (
