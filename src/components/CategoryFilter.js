@@ -1,22 +1,36 @@
-export default function CategoryFilter() {
+import { useQuery } from "@apollo/client/react";
+import GET_CATEGORY_FILTERS from "@/data/category-filters-query";
+
+export default function CategoryFilter({handleChange, checkedCats}) {
+    const queryVariables = {
+        group: ['diet']
+    }
+
+    const { data, error } = useQuery(GET_CATEGORY_FILTERS, { variables: queryVariables });
+
+    if (error) {
+        console.error(error);
+        return null;
+    }
+
+    if (!data) return null;
+
     return (
         <div className="category-filter">
-            <div className="fieldgroup">
-                <input type="checkbox" id="vegan" name="vegan" />
-                <label htmlFor="vegan">Vegan</label>
-            </div>
-            <div className="fieldgroup">
-                <input type="checkbox" id="gluten-free" name="gluten-free" />
-                <label htmlFor="gluten-free">Gluten Free</label>
-            </div>
-            <div className="fieldgroup">
-                <input type="checkbox" id="low-carb" name="low-carb" />
-                <label htmlFor="low-carb">Low Carb</label>
-            </div>
-            <div className="fieldgroup">
-                <input type="checkbox" id="low-sodium" name="low-sodium" />
-                <label htmlFor="low-sodium">Low Sodium</label>
-            </div>
+            {data.categories.map( (cat) => (
+                <div className="fieldgroup" key={cat.id}>
+                    <input 
+                        type="checkbox" 
+                        id={'cat-' + cat.slug} 
+                        name={'cat-' + cat.slug} 
+                        value={cat.id}
+                        onChange={(e) => handleChange(e)}
+                        checked={checkedCats.includes( Number(cat.id) )}
+                    />
+
+                    <label htmlFor={'cat-' + cat.slug}>{ cat.title }</label>
+                </div>
+            ) )}
         </div>
     );
 }

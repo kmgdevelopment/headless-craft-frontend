@@ -7,6 +7,7 @@ const GET_RECIPE_ENTRIES = gql`
         $offset: Int
         $search: String
         $orderBy: String
+        $relatedTo: [QueryArgument]
     ) {
         entries(
             section: $section
@@ -14,6 +15,7 @@ const GET_RECIPE_ENTRIES = gql`
             offset: $offset
             search: $search
             orderBy: $orderBy
+            relatedTo: $relatedTo
         ) {
             id
             title
@@ -28,6 +30,7 @@ const GET_RECIPE_ENTRIES = gql`
             section: $section
             search: $search
             orderBy: $orderBy
+            relatedTo: $relatedTo
         )
     }
 `;
