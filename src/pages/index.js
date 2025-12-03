@@ -17,7 +17,7 @@ export default function Home() {
     offset: queryOffset.current
   }
 
-  const { error, data } = useQuery(GET_RECIPE_ENTRIES, { variables: queryVariables });
+  const { error, data, fetchMore } = useQuery(GET_RECIPE_ENTRIES, { variables: queryVariables });
 
   // if there was a GraphQL error log it and return a message to the user
   if (error) {
@@ -27,6 +27,14 @@ export default function Home() {
 
   // prevent an error if the component mounts before the data has loaded
   if (!data) return null;
+
+  const handleLoadMore = () => {
+  fetchMore({
+    variables: {
+      offset: queryOffset.current = data.entries.length // increment the offset while updating the ref value at the same time
+    }
+  });
+}
 
   return (
     <>
