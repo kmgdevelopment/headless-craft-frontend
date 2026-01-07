@@ -50,9 +50,10 @@ export default function Home() {
         // Craft category queries begin with the 'and' operator
         let checkedCategories = queryRelatedTo() ? [...queryRelatedTo()] : ['and'];
 
+        // category IDs must be explicitly cast as numbers
         const inputValue = Number(e.target.value);
 
-        if (e.target.checked) {
+        if(e.target.checked) {
             // add value if not already in array
             if (!checkedCategories.includes(inputValue)) {
                 checkedCategories.push(inputValue);
@@ -61,7 +62,7 @@ export default function Home() {
             // remove value if it exists in array
             const index = checkedCategories.indexOf(inputValue);
 			
-            if (index > -1) {
+            if(index > -1) {
                 checkedCategories.splice(index, 1);
             }
         }
